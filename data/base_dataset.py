@@ -1,11 +1,12 @@
 import torch.utils.data as data
 import torchvision.transforms as transforms
 from PIL import Image
-from configs.setup import load_config
+import yaml
 
-# cfg = load_config("configs\configs.yaml", mode="")
-# print("CONFIGS: ", cfg)
-
+# with open('configs\configs.yaml', 'r') as f:
+#     cfg = yaml.safe_load(f)
+# print("CONFIGS: ", cfg["baseconfigs"])
+ 
 class BaseDataset(data.Dataset):
     def __init__(self):
         super(BaseDataset, self).__init__()

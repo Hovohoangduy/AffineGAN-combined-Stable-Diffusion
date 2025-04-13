@@ -78,21 +78,3 @@ class TestConfigs(BaseConfigs):
     w_pa: float
     w_la: float
     w_co: float
-
-
-# ===== Hàm load YAML =====
-def load_config(yaml_path: str, mode: str = "") -> Union[TrainConfigs, TestConfigs, BaseConfigs]:
-    with open(yaml_path, "r") as f:
-        full_cfg = yaml.safe_load(f)
-
-    base_cfg = full_cfg.get("baseconfigs", {})
-    if mode == "train":
-        train_cfg = full_cfg.get("trainconfigs", {})
-        merged_cfg = {**base_cfg, **train_cfg}
-        return TrainConfigs(**merged_cfg)
-    elif mode == "test":
-        test_cfg = full_cfg.get("testconfigs", {})
-        merged_cfg = {**base_cfg, **test_cfg}
-        return TestConfigs(**merged_cfg)
-    else:
-        return BaseConfigs(**base_cfg)
