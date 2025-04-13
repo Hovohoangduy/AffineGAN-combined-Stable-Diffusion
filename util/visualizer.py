@@ -5,7 +5,8 @@ import ntpath
 import time
 from . import util
 from . import html
-from scipy.misc import imresize
+import cv2
+from PIL import Image
 
 if sys.version_info[0] == 2:
     VisdomExceptionBase = Exception
@@ -27,10 +28,15 @@ def save_images(webpage, visuals, image_path, aspect_ratio=1.0, width=256):
         image_name = '%s_%s.png' % (name, label)
         save_path = os.path.join(image_dir, image_name)
         h, w, _ = im.shape
+        pil_image = Image.fromarray(im)
         if aspect_ratio > 1.0:
-            im = imresize(im, (h, int(w * aspect_ratio)), interp='bicubic')
+            # im = cv2.resize(im, (h, int(w * aspect_ratio)), interpolation=cv2.INTER_CUBIC)
+            pil_image = pil_image.resize((h, int(w * aspect_ratio)), interpolation=cv2.INTER_CUBIC)
+            im = np.array(pil_image)
         if aspect_ratio < 1.0:
-            im = imresize(im, (int(h / aspect_ratio), w), interp='bicubic')
+            # im = cv2.resize(im, (int(h / aspect_ratio), w), interpolation=cv2.INTER_CUBIC)
+            pil_image = pil_image.resize((int(h / aspect_ratio), w), interpolation=cv2.INTER_CUBIC)
+            im = np.array(pil_image)
         util.save_image(im, save_path)
 
         ims.append(image_name)

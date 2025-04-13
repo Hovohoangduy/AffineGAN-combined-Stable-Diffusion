@@ -1,0 +1,73 @@
+# ==== BaseOptions ====
+baseconfigs:
+  dataroot: "/path/to/data"
+  batch_size: 1
+  loadSize: 286
+  display_winsize: 256
+  fineSize: 256
+  input_nc: 3
+  output_nc: 3
+  ngf: 64
+  ndf: 64
+  netD: "basic"
+  n_layers_D: 3
+  netG: "unet256"
+  gpu_ids: "0"
+  name: "experiment_name"
+  dataset_mode: "affineGAN"
+  model: "affineGAN"
+  epoch: "latest"
+  num_threads: 1
+  checkpoints_dir: "./checkpoints"
+  norm: "instance"
+  serial_batches: false
+  no_dropout: false
+  max_dataset_size: inf
+  resize_or_crop: "resize_and_crop"
+  no_flip: false
+  init_type: "normal"
+  init_gain: 0.02
+  verbose: false
+  suffix: ""
+  no_patch: false
+
+# ==== TrainOptions ====
+trainconfigs:
+  display_freq: 100
+  display_ncols: 0
+  display_id: -1
+  display_server: "http://localhost"
+  display_env: "main"
+  display_port: 8097
+  update_html_freq: 1000
+  print_freq: 50
+  save_latest_freq: 1000
+  save_epoch_freq: 200
+  continue_train: false
+  epoch_count: 1
+  phase: "train"
+  niter: 10000
+  niter_decay: 100
+  beta1: 0.5
+  lr: 0.0002
+  no_lsgan: false
+  lambda_A: 100.0
+  no_html: false
+  lr_policy: "lambda"
+  lr_decay_iters: 50
+  w_pa: 1.0
+  w_la: 1.0
+  w_co: 1.0
+  train_imagenum: 5
+  istrain: true
+
+# ==== TestOptions ====
+testconfigs:
+  ntest: inf
+  results_dir: "./results/"
+  aspect_ratio: 1.0
+  num_test: 100
+  interval: 0.05
+  eval: false
+  istrain: false
+  # w_pa, w_la, w_co đã được định nghĩa chung ở trên, dùng lại nếu cần

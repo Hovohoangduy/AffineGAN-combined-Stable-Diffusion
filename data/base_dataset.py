@@ -1,7 +1,10 @@
 import torch.utils.data as data
 import torchvision.transforms as transforms
 from PIL import Image
+from configs.setup import load_config
 
+# cfg = load_config("configs\configs.yaml", mode="")
+# print("CONFIGS: ", cfg)
 
 class BaseDataset(data.Dataset):
     def __init__(self):
